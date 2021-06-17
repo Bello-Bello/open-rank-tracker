@@ -1,0 +1,10 @@
+{
+    "name": "maps-function",
+    "version": "0.0.1",
+    "dependencies": {
+        "axios": "^0.19.2",
+        "puppeteer": "10.0.0",
+        "puppeteer-extra": "3.1.8",
+        "puppeteer-extra-plugin-stealth": "2.7.8"
+    }
+}
