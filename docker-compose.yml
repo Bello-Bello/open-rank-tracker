@@ -1,0 +1,67 @@
+version: '3'
+
+volumes:
+    sock:
+    redis:
+
+services:
+    nginx:
+        image: nginx
+        restart: always
+        network_mode: "host"
+        volumes:
+            - ./nginx.conf:/etc/nginx/nginx.conf
+            - ./static:/static
+            - sock:/sock
+        ports:
+            - "80:80"
+
+    app:
+        command: gunicorn --preload --bind=unix:/sock/app.sock --workers=6 wsgi
+        restart: always
+        image: open-rank-tracker
+        build: .
+        environment:
+            - POSTGRES_USER=pguser
+            - POSTGRES_PASSWORD=pgpass
+            - POSTGRES_DB=openranktracker
+            - POSTGRES_HOST=database
+        volumes:
+            - ./:/usr/src/app
+            - sock:/sock
+        links:
+            - database
+
+    app-background:
+        command: python tasks.py worker -B --loglevel=info
+        restart: always
+        image: open-rank-tracker
+        build: .
+        environment:
+            - POSTGRES_USER=pguser
+            - POSTGRES_PASSWORD=pgpass
+            - POSTGRES_DB=openranktracker
+            - POSTGRES_HOST=database
+        volumes:
+            - ./:/usr/src/app
+            - /var/run/docker.sock:/var/run/docker.sock
+        links:
+            - redis
+            - database
+
+    redis:
+        image: redis:5.0.4-stretch
+        volumes:
+            - redis:/data
+
+    database:
+        image: postgres
+        restart: always
+        volumes:
+            - /var/lib/postgres:/var/lib/postgres
+        ports:
+            - "5432:5432"
+        environment:
+            - POSTGRES_USER=pguser
+            - POSTGRES_PASSWORD=pgpass
+            - POSTGRES_DB=openranktracker
