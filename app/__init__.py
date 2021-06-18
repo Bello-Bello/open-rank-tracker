@@ -37,6 +37,11 @@ dictConfig(
 
 def init_app(app):
     db.init_app(app)
+
+    from app.api import api_blueprint
+
+    app.register_blueprint(api_blueprint)
+
     return app
 
 
@@ -63,7 +68,11 @@ def create_app():
         os.environ.get("SQLALCHEMY_POOL_RECYCLE", 300)
     )
 
-    app.config["SECRET_KEY"] = str(uuid.uuid4())
+    app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "placeholder_key")
     app.config["SQLALCHEMY_ECHO"] = False
 
+    create_celery(app)
     return app
+
+
+from app.models import *  # noqa
