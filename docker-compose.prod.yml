@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+    nginx:
+        image: nginx
+        restart: always
+        volumes:
+            - /etc/letsencrypt:/etc/letsencrypt
+            - ./nginx.prod.conf:/etc/nginx/nginx.conf
+            - ./static:/static
+            - sock:/sock
+        ports:
+            - "443:443"
+            - "80:80"
