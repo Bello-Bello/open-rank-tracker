@@ -17,7 +17,7 @@ console.log(`*   Search Keyword: ${process.env["KEYWORD"]}`);
 console.log(`*   Proxy URL: ${proxyUrl}`);
 console.log("******************************************");
 
-let pages = 2;
+let pages = 4;
 
 puppeteer.use(StealthPlugin());
 
@@ -25,9 +25,23 @@ async function crawl(browser) {
     const page = await browser.newPage();
 
     console.log("Agent loading Google homepage");
-
     await page.authenticate({ username, password });
-    await page.goto("https://www.google.com/?hl=en", { timeout: 9000 });
+
+    try {
+        await page.goto("https://www.google.com/?hl=en", { timeout: 9000 });
+    } catch (e) {
+        axios
+            .post(`http://172.17.0.1/api/keywords/${keywordID}/callback/`, {
+                proxy_id: proxyID,
+                results: [],
+                blocked: false,
+                error: e.message,
+                secret_key: secretKey
+            })
+            .then(() => {
+                process.exit()
+            });
+    }
 
     try {
         const [agreeButton] = await page.$x("//button/div[text() = 'I agree']");
@@ -57,7 +71,6 @@ async function crawl(browser) {
             "//div[@role = 'navigation']//a[descendant::span[contains(text(), 'Next')]]"
         );
 
-        await page.waitFor(1000);
         rankData = rankData.concat(links);
 
         if (!next) {
@@ -86,6 +99,7 @@ async function crawl(browser) {
             proxy_id: proxyID,
             results: rankData,
             blocked: blocked,
+            error: "",
             secret_key: secretKey
         })
         .then(() => {

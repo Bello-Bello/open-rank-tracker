@@ -41,9 +41,6 @@ def scan_keyword_async(proxyconn_id, keyword_id):
 
     proxyconn.engaged = False
 
-    keyword.last_scan = datetime.utcnow()
-    keyword.scanning = False
-
     db.session.add_all((proxyconn, keyword))
     db.session.commit()
 
@@ -70,12 +67,26 @@ def handle_scraper_response(keyword_id, data):
     proxyconn = ProxyConnection.query.get(data["proxy_id"])
     keyword = Keyword.query.get(keyword_id)
 
+    proxyconn.consecutive_fails += int(bool(data["blocked"] or data["error"]))
+    app.logger.info(data)
+
     if data["blocked"]:
         proxyconn.block_count += 1
+    elif data["error"]:
+        app.logger.info(data["error"])
+    else:
+        keyword.last_scan = datetime.utcnow()
+        proxyconn.consecutive_fails = 0
 
+    root_domain = keyword.domain.domain
+    print(root_domain)
     for url in data["results"]:
         parsed_url = urlparse(url)
         print(parsed_url.netloc)
+        if root_domain == parsed_url.netloc:
+            print("FOUND IT")
 
-    db.session.add(proxyconn)
+    keyword.scanning = False
+
+    db.session.add_all((proxyconn, keyword))
     db.session.commit()

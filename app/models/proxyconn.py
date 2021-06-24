@@ -16,7 +16,7 @@ class ProxyConnection(db.Model):
 
     usage_count = db.Column(db.Integer, default=0, server_default="0")
     block_count = db.Column(db.Integer, default=0, server_default="0")
-    timeout_count = db.Column(db.Integer, default=0, server_default="0")
+    consecutive_fails = db.Column(db.Integer, default=0, server_default="0")
 
     engaged = db.Column(db.Boolean, default=False, server_default="f")
 
