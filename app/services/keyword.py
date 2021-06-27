@@ -6,6 +6,7 @@ from flask import current_app as app
 
 from app.models.proxyconn import ProxyConnection
 from app.models.keyword import Keyword
+from app.models.ranking import Ranking
 from app import celery, db
 
 
@@ -68,7 +69,6 @@ def handle_scraper_response(keyword_id, data):
     keyword = Keyword.query.get(keyword_id)
 
     proxyconn.consecutive_fails += int(bool(data["blocked"] or data["error"]))
-    app.logger.info(data)
 
     if data["blocked"]:
         proxyconn.block_count += 1
@@ -79,13 +79,16 @@ def handle_scraper_response(keyword_id, data):
         proxyconn.consecutive_fails = 0
 
     root_domain = keyword.domain.domain
-    print(root_domain)
-    for url in data["results"]:
+    for position, url in enumerate(data["results"], 1):
         parsed_url = urlparse(url)
-        print(parsed_url.netloc)
         if root_domain == parsed_url.netloc:
-            print("FOUND IT")
+            ranking = Ranking()
 
+            ranking.url = url
+            ranking.position = position
+            ranking.keyword = keyword
+
+            db.session.add(ranking)
     keyword.scanning = False
 
     db.session.add_all((proxyconn, keyword))

@@ -1,3 +1,4 @@
+from app.models.keyword import Keyword
 from app import db
 
 
@@ -15,3 +16,10 @@ class Ranking(db.Model):
 
     position = db.Column(db.Integer, nullable=False)
     url = db.Column(db.String, nullable=False)
+
+    keyword = db.relationship(
+        Keyword,
+        backref=db.backref(
+            "rankings", order_by="Ranking.position", cascade="delete-orphan,all"
+        ),
+    )

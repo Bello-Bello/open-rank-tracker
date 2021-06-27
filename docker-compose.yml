@@ -48,6 +48,6 @@ services:
         volumes:
             - /var/lib/postgres:/var/lib/postgres
         expose:
-            5432
+            - 5432
         env_file:
             - variables.env
