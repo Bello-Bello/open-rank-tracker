@@ -1,3 +1,6 @@
+celerybeat-schedule
 node_modules
+package-lock.json
+static/
 __pycache__
 *.pyc

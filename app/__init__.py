@@ -69,7 +69,7 @@ def create_app():
     )
 
     app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "placeholder_key")
-    app.config["SQLALCHEMY_ECHO"] = False
+    app.config["SQLALCHEMY_ECHO"] = True
 
     create_celery(app)
     return app
