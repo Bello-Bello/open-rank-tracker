@@ -1,0 +1,38 @@
+h1 { flex: 1; font-size: 26px; cursor: pointer; }
+h2 { font-size: 32px; }
+
+.container {
+    display: flex;
+    min-height: 100vh;
+    color: var(--colors-fg1);
+}
+
+.sideContainer {
+    flex: 1;
+    display: flex;
+    max-width: 415px;
+    flex-direction: column;
+    background-color: var(--colors-bg8);
+    padding: var(--pad-sm) var(--pad-md);
+}
+
+.sideContainer p {
+    opacity: 0.5;
+    line-height: 25px;
+    font-size: 16px;
+}
+
+.tagline {
+    flex: 6;
+}
+
+.routeContainer {
+    flex: 3;
+    background-color: var(--colors-bg2);
+}
+
+@media (max-width: 768px) {
+    .sideContainer {
+        display: none;
+    }
+}

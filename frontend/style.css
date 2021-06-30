@@ -1,0 +1,9 @@
+:root {
+    --pad-sm: 1.25em; 
+    --pad-md: 3em; 
+    --colors-fg1: #FFFFFF;
+    --colors-bg2: #212434;
+    --colors-bg8: #181A26;
+}
+
+html, body { padding: 0; margin: 0; }
