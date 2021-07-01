@@ -1,11 +1,11 @@
-h1 { flex: 1; font-size: 26px; cursor: pointer; }
-h2 { font-size: 32px; }
-
 .container {
     display: flex;
     min-height: 100vh;
     color: var(--colors-fg1);
 }
+
+.sideContainer > h1 { flex: 1; font-size: 26px; cursor: pointer; }
+.container > h2 { font-size: 32px; }
 
 .sideContainer {
     flex: 1;

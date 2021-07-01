@@ -3,6 +3,7 @@ import { Router, navigate } from "@reach/router";
 import styled from "styled-components";
 
 import { COLORS, PAD_SM, PAD_MD, PAD_XS } from "../util/constants";
+import Signup from "../components/Signup";
 import Login from "../components/Login";
 import styles from "./Splash.module.css";
 
@@ -20,6 +21,7 @@ const Splash = () => {
             </div>
             <div className={styles.routeContainer}>
                 <Router style={{ height: "100%" }}>
+                    <Signup path="signup"/>
                     <Login path="login"/>
                 </Router>
             </div>

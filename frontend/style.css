@@ -1,9 +1,25 @@
 :root {
+    --margin-sm: 0.55em;
+    --margin-md: 1.3em;
+    --margin-lg: 2.3em;
+    --pad-xs: 0.7em;
     --pad-sm: 1.25em; 
     --pad-md: 3em; 
+    --border-radius: 10px;
     --colors-fg1: #FFFFFF;
     --colors-bg2: #212434;
+    --colors-bg4: #2C3046;
     --colors-bg8: #181A26;
 }
 
-html, body { padding: 0; margin: 0; }
+html, body { 
+    font-family: sans-serif;
+    padding: 0; 
+    margin: 0; 
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
