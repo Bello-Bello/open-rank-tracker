@@ -3,6 +3,8 @@ Flask-SQLAlchemy==2.4.4
 Flask-RESTful
 Flask-Script
 Flask==1.1.2
+marshmallow
+PyJWT
 gunicorn
 redis
 psycopg2

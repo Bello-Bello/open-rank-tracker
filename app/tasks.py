@@ -8,8 +8,6 @@ from app import celery
 
 from app.models.proxyconn import ProxyConnection
 from app.models.keyword import Keyword
-from app import db
-
 from app.services.keyword import scan_keyword
 
 

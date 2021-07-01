@@ -14,7 +14,7 @@ module.exports = merge(baseConfig, {
     hot: true,
     proxy: {
       "/api/**": {
-        target: "https://staging.persuaded.io/",
+        target: "http://localhost/",
         secure: false,
         changeOrigin: true
       }

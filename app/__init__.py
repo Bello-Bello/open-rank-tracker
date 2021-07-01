@@ -1,5 +1,4 @@
 from logging.config import dictConfig
-import uuid
 import os
 
 from flask import Flask
@@ -8,7 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from celery import Celery
 import celeryconfig
 
-from app.util import create_db_uri, create_testing_db_uri
+from app.util import create_db_uri
 
 db = SQLAlchemy()
 
@@ -69,7 +68,7 @@ def create_app():
     )
 
     app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "placeholder_key")
-    app.config["SQLALCHEMY_ECHO"] = True
+    app.config["SQLALCHEMY_ECHO"] = False
 
     create_celery(app)
     return app

@@ -6,6 +6,7 @@
     --pad-sm: 1.25em; 
     --pad-md: 3em; 
     --border-radius: 10px;
+    --colors-primary3: #9A274C;
     --colors-fg1: #FFFFFF;
     --colors-bg2: #212434;
     --colors-bg4: #2C3046;
@@ -22,4 +23,12 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.formError {
+    color: var(--colors-primary3);
+    margin-top: var(--margin-sm);
+    font-size: 14px;
+    text-align: right;
+    height: 20px;
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "@reach/router";
 import styles from "./Login.module.css";
 
@@ -6,6 +6,9 @@ import { PrimaryButton, OutlineButton, Input } from "../util/controls";
 import { MARGIN_SM, MARGIN_MD } from "../util/constants";
 
 const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
     return (
         <div className={styles.container}>
             <div className={styles.formContainer}>
@@ -16,14 +19,24 @@ const Login = () => {
                             <label htmlFor="email">Your Email</label>
                             <div></div>
                         </div>
-                        <Input type="text" name="email" />
+                        <Input
+                            type="text"
+                            name="email"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                        />
                     </div>
                     <div style={{ marginBottom: MARGIN_MD }}>
                         <div>
                             <label htmlFor="password">Password</label>
                             <div></div>
                         </div>
-                        <Input type="password" name="password" />
+                        <Input
+                            type="password"
+                            name="password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                        />
                     </div>
                 </div>
                 <div className={styles.formFooter}>
