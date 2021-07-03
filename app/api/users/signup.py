@@ -7,6 +7,7 @@ from flask_restful import Resource
 from flask import current_app as app
 from flask import make_response, request, abort
 
+from app.services.user import send_email
 from app.serde.user import UserSchema
 from app.models.user import User
 from app import db
@@ -30,6 +31,13 @@ class SignUpView(Resource):
 
         db.session.add(user)
         db.session.commit()
+
+        send_email(
+            user.email,
+            "Account activation",
+            "verify_email.html",
+            root_domain=request.url_root,
+        )
 
         response = make_response("")
         response.set_cookie(

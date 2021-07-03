@@ -34,6 +34,8 @@ const Signup = () => {
             .catch(error => {
                 if (error.response && error.response.status === 400) {
                     setServerValidation(error.response.data.message);
+                } else {
+                    throw error;
                 }
             });
     };

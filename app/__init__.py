@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from celery import Celery
 import celeryconfig
 
+from app.services.auth import decode_cookie
 from app.util import create_db_uri
 
 db = SQLAlchemy()
@@ -69,6 +70,13 @@ def create_app():
 
     app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "placeholder_key")
     app.config["SQLALCHEMY_ECHO"] = False
+
+    app.config["MAILGUN_API_KEY"] = os.environ["MAILGUN_API_KEY"]
+    app.config["MAIL_SUBJECT_PREFIX"] = "[OpenRankTracker]"
+    app.config["MAIL_SENDER"] = os.environ.get("MAIL_SENDER")
+    app.config["MAIL_DOMAIN"] = os.environ["MAIL_DOMAIN"]
+
+    app.before_request_funcs.setdefault(None, [decode_cookie])
 
     create_celery(app)
     return app
