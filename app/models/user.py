@@ -16,6 +16,7 @@ class User(db.Model):
     )
 
     google_id = db.Column(db.String, nullable=True)
+    activated = db.Column(db.Boolean, default=False, server_default="f", nullable=False)
 
     # When the user chooses to set up an account directly with the app.
     _password = db.Column(db.String)
