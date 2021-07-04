@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    height: 100%;
+    padding: var(--pad-md);
+    max-height: 500px;
+    justify-content: center;
+    align-items: center;
+}
+
+.container h1 {
+    font-size: 32px;
+    margin-bottom: var(--margin-md);
+}

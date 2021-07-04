@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { navigate, Link } from "@reach/router";
 import styles from "./Login.module.css";
 
 import axios from "axios";
 
+import { UserContext } from "../userContext";
 import { PrimaryButton, OutlineButton, Input } from "../util/controls";
 import { COLORS, MARGIN_SM, MARGIN_MD } from "../util/constants";
 
 const Signup = () => {
+    const { setLoggedIn } = useContext(UserContext);
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmedPassword, setConfirmedPassword] = useState("");
@@ -29,6 +32,7 @@ const Signup = () => {
         axios
             .post("/api/users/signup/", { email: email, password: password })
             .then(res => {
+                setLoggedIn(true);
                 navigate("/");
             })
             .catch(error => {

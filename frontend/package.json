@@ -47,6 +47,7 @@
     "prettier": "^2.2.1",
     "prop-types": "^15.7.2",
     "query-string": "^6.13.8",
+    "querystring": "^0.2.1",
     "rc-slider": "^9.6.1",
     "react": "^16.10.2",
     "react-data-table-component": "^6.11.6",
