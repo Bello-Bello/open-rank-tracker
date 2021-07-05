@@ -45,7 +45,7 @@ const Signup = () => {
     };
 
     const oAuth2SignUp = () => {
-        document.querySelector("#oauthform").submit();
+        document.querySelector("#oauth2signupform").submit();
     };
 
     return (
@@ -126,7 +126,7 @@ const Signup = () => {
                     </div>
                 </form>
                 <form
-                    id="oauthform"
+                    id="oauth2signupform"
                     action="/api/users/oauth2signup/"
                     method="POST"
                 ></form>

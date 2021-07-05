@@ -39,6 +39,10 @@ const Login = () => {
             });
     };
 
+    const oAuth2Login = () => {
+        document.querySelector("#oauth2loginform").submit();
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.formContainer}>
@@ -56,7 +60,7 @@ const Login = () => {
                                 onChange={e => setEmail(e.target.value)}
                             />
                         </div>
-                        <div style={{marginBottom: MARGIN_SM}}>
+                        <div style={{ marginBottom: MARGIN_SM }}>
                             <div>
                                 <label htmlFor="password">Password</label>
                             </div>
@@ -73,7 +77,11 @@ const Login = () => {
                         <PrimaryButton type="submit" disabled={!formValid}>
                             Sign In
                         </PrimaryButton>
-                        <OutlineButton className="centered" type="button">
+                        <OutlineButton
+                            onClick={oAuth2Login}
+                            className="centered"
+                            type="button"
+                        >
                             <div style={{ marginRight: MARGIN_SM }}>
                                 Sign In With
                             </div>
@@ -87,6 +95,11 @@ const Login = () => {
                     </div>
                 </form>
             </div>
+            <form
+                id="oauth2loginform"
+                action="/api/users/oauth2login/"
+                method="POST"
+            ></form>
         </div>
     );
 };
