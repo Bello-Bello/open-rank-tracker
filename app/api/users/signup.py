@@ -37,7 +37,7 @@ class SignUpView(Resource):
             "Account activation",
             "verify_email.html",
             root_domain=request.url_root,
-            user_uuid=user.external_id
+            user_uuid=user.external_id,
         )
 
         response = make_response("")

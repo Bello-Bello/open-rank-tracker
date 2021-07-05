@@ -5,6 +5,7 @@ Flask-Script
 Flask==1.1.2
 marshmallow
 PyJWT
+oauthlib
 gunicorn
 redis
 psycopg2

@@ -1,4 +1,3 @@
-import os
 import requests
 
 from flask import current_app as app

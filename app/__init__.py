@@ -71,6 +71,9 @@ def create_app():
     app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "placeholder_key")
     app.config["SQLALCHEMY_ECHO"] = False
 
+    app.config["GOOGLE_CLIENT_ID"] = os.environ["GOOGLE_CLIENT_ID"]
+    app.config["GOOGLE_CLIENT_SECRET"] = os.environ["GOOGLE_CLIENT_SECRET"]
+
     app.config["MAILGUN_API_KEY"] = os.environ["MAILGUN_API_KEY"]
     app.config["MAIL_SUBJECT_PREFIX"] = "[OpenRankTracker]"
     app.config["MAIL_SENDER"] = os.environ.get("MAIL_SENDER")

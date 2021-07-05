@@ -10,6 +10,7 @@ import { MARGIN_SM, MARGIN_MD } from "../util/constants";
 
 const Login = () => {
     const { setLoggedIn } = useContext(UserContext);
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [formValid, setFormValid] = useState(false);
@@ -26,6 +27,7 @@ const Login = () => {
         axios
             .post("/api/users/login/", { email: email, password: password })
             .then(res => {
+                setLoggedIn(true);
                 navigate("/");
             })
             .catch(error => {

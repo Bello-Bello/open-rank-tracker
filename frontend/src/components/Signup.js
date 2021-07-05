@@ -44,6 +44,10 @@ const Signup = () => {
             });
     };
 
+    const oAuth2SignUp = () => {
+        document.querySelector("#oauthform").submit();
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.formContainer}>
@@ -104,7 +108,11 @@ const Signup = () => {
                         <PrimaryButton type="submit" disabled={!formValid}>
                             Create Account
                         </PrimaryButton>
-                        <OutlineButton className="centered" type="button">
+                        <OutlineButton
+                            onClick={oAuth2SignUp}
+                            className="centered"
+                            type="button"
+                        >
                             <div style={{ marginRight: MARGIN_SM }}>
                                 Sign Up With
                             </div>
@@ -117,6 +125,11 @@ const Signup = () => {
                         </Link>
                     </div>
                 </form>
+                <form
+                    id="oauthform"
+                    action="/api/users/oauth2signup/"
+                    method="POST"
+                ></form>
             </div>
         </div>
     );
