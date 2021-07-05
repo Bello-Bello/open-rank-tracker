@@ -30,10 +30,14 @@ class Oauth2SignUpCallbackView(Resource):
             )
         ).first()
 
+        if not user:
+            user = User()
+
         user.google_id = google_id
         user.given_name = userinfo["given_name"]
         user.email = userinfo["email"]
         user.last_login = datetime.now()
+        user.activated = True
 
         db.session.add(user)
         db.session.commit()
