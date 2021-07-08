@@ -1,0 +1,4 @@
+.container {
+    padding: var(--pad-sm);
+    width: 340px;
+}

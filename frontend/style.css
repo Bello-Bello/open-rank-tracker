@@ -11,6 +11,7 @@
     --colors-bg2: #212434;
     --colors-bg4: #2C3046;
     --colors-bg8: #181A26;
+    --colors-disabled: #464A61;
 }
 
 html, body { 
@@ -51,10 +52,32 @@ html, body {
     background-color: var(--colors-disabled);
     border-radius: var(--border-radius);
     position: absolute;
-    padding: var(--pad-md);
+    padding: var(--pad-sm) var(--pad-sm) var(--pad-sm) var(--pad-sm);
     transform: translate(-50%, 0);
     z-index: 9999;
     color: var(--colors-fg1);
-    top: 20px;
+    top: 100px;
     left: 50%;
+}
+
+.formGroup {
+    margin-bottom: var(--margin-md);
+}
+
+.formColumns {
+    display: flex;
+}
+
+.formLabel {
+    display: block;
+    opacity: 0.5;
+    font-size: 14px;
+    margin-bottom: var(--margin-sm);
+}
+
+.closeOut {
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
 }
