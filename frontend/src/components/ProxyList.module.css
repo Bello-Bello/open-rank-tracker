@@ -1,0 +1,11 @@
+.noProxiesContainer {
+    display: flex;
+    box-sizing: border-box;
+    text-align: center;
+    padding: var(--pad-md);
+    color: var(--colors-fg1);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}

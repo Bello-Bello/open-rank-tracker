@@ -1,8 +1,6 @@
 import React from "react";
 import { Router, navigate } from "@reach/router";
-import styled from "styled-components";
 
-import { COLORS, PAD_SM, PAD_MD, PAD_XS } from "../util/constants";
 import styles from "./Splash.module.css";
 
 import Activate from "../components/Activate";

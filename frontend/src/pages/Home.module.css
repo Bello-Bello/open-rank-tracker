@@ -1,0 +1,21 @@
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebarContainer {
+    width: 290px;
+}
+
+.routeContainer {
+    background-color: var(--colors-bg2);
+    height: 100vh;
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .sidebarContainer {
+        width: 80px;
+    }
+}

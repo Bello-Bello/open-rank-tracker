@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { navigate, Link } from "@reach/router";
-import styles from "./Login.module.css";
+import styles from "./Signup.module.css";
 
 import axios from "axios";
 
