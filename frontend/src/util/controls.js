@@ -8,7 +8,7 @@ export const Input = styled.input`
     padding: ${PAD_XS} ${PAD_SM};
     outline: none;
     border-radius: ${BORDER_RADIUS};
-    border: none;
+    border: ${props => props.border || "none"};
 `;
 
 export const Button = styled.button`

@@ -42,6 +42,7 @@
     "axios": "^0.20.0",
     "axios-request-handler": "^1.0.4",
     "d3": "^6.2.0",
+    "formik": "^2.2.9",
     "js-cookie": "^2.2.1",
     "jwt-decode": "^2.2.0",
     "prettier": "^2.2.1",
@@ -54,6 +55,7 @@
     "react-dom": "^16.10.2",
     "react-hot-loader": "^4.12.15",
     "react-notifications-component": "^2.4.1",
-    "styled-components": "^4.4.0"
+    "styled-components": "^4.4.0",
+    "yup": "^0.32.9"
   }
 }
