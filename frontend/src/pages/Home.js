@@ -14,7 +14,7 @@ const Home = () => {
                 <Sidebar/>
             </div>
             <Router className={styles.routeContainer}>
-                <ProxyList path="proxies"/>
+                <ProxyList path="proxies" default/>
                 <DomainList path="domains"/>
             </Router>
         </div>
