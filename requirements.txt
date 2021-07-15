@@ -4,6 +4,7 @@ Flask-RESTful
 Flask-Script
 Flask==1.1.2
 marshmallow
+marshmallow_sqlalchemy
 PyJWT
 oauthlib
 gunicorn

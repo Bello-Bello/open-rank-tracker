@@ -9,6 +9,7 @@ from app.api.users.activation import ActivationView
 from app.api.users.signup import SignUpView
 from app.api.users.login import LoginView
 
+from app.api.proxies import ProxiesView
 from app.api.keywords.scan_callback import ScanCallbackView
 
 
@@ -23,4 +24,5 @@ api.add_resource(ActivationView, "/users/activate/")
 api.add_resource(SignUpView, "/users/signup/")
 api.add_resource(LoginView, "/users/login/")
 
+api.add_resource(ProxiesView, "/proxies/")
 api.add_resource(ScanCallbackView, "/keywords/<int:keyword_id>/callback/")

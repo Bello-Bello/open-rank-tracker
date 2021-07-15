@@ -6,9 +6,10 @@ import Popup from "./Popup";
 import { COLORS, MARGIN_SM } from "../util/constants";
 import { PrimaryButton, Input } from "../util/controls";
 import styles from "./ProxyPopup.module.css";
+import { api } from "../api";
 
 const defaultProxy = {
-    url: "",
+    proxy_url: "",
     username: "",
     password: "",
     min_wait_time: 60,
@@ -16,7 +17,7 @@ const defaultProxy = {
 };
 
 const proxySchema = Yup.object().shape({
-    url: Yup.string().required(),
+    proxy_url: Yup.string().required(),
     username: Yup.string().required(),
     password: Yup.string().required(),
     min_wait_time: Yup.number()
@@ -36,8 +37,11 @@ const ProxyPopup = ({ shown, onClose }) => {
         setShown(shown);
     }, [shown]);
 
-    const onSubmit = event => {
-        close();
+    const onSubmit = (proxy, { resetForm }) => {
+        api.post("/proxies/", proxy).then(() => {
+            resetForm();
+            close();
+        });
     };
 
     const close = () => {
@@ -73,13 +77,13 @@ const ProxyPopup = ({ shown, onClose }) => {
                             <div className="formGroup">
                                 <label className="formLabel">Proxy URL</label>
                                 <Input
-                                    name="url"
+                                    name="proxy_url"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    value={values.url}
+                                    value={values.proxy_url}
                                     border={
-                                        touched.url &&
-                                        errors.url &&
+                                        touched.proxy_url &&
+                                        errors.proxy_url &&
                                         `1px solid ${COLORS.primary3}`
                                     }
                                     style={{ width: "100%" }}
