@@ -1,11 +1,32 @@
+.container {
+    padding: var(--pad-md);
+    padding-top: var(--pad-sm);
+    box-sizing: border-box;
+}
+
 .noProxiesContainer {
     display: flex;
     box-sizing: border-box;
+    height: 100%;
     text-align: center;
     padding: var(--pad-md);
     color: var(--colors-fg1);
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+}
+
+.buttonRow {
+    display: flex;
+    margin-bottom: var(--margin-md);
+}
+
+.proxyList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.proxyContainer {
+    margin-right: var(--margin-sm);
+    margin-bottom: var(--margin-sm);
 }

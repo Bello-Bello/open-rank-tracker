@@ -40,19 +40,19 @@ const ProxyPopup = ({ shown, onClose }) => {
     const onSubmit = (proxy, { resetForm }) => {
         api.post("/proxies/", proxy).then(() => {
             resetForm();
-            close();
+            close(true);
         });
     };
 
-    const close = () => {
+    const close = (submitted) => {
         setShown(false);
-        onClose();
+        onClose(submitted);
     };
 
     return (
         <Popup shown={_shown}>
             <div className={styles.container}>
-                <div className="closeOut" onClick={close}>
+                <div className="closeOut" onClick={() => close(false)}>
                     <img src="/assets/close.png" />
                 </div>
                 <div>
@@ -84,7 +84,7 @@ const ProxyPopup = ({ shown, onClose }) => {
                                     border={
                                         touched.proxy_url &&
                                         errors.proxy_url &&
-                                        `1px solid ${COLORS.primary3}`
+                                        `1px solid ${COLORS.warning}`
                                     }
                                     style={{ width: "100%" }}
                                 />
@@ -101,7 +101,7 @@ const ProxyPopup = ({ shown, onClose }) => {
                                     border={
                                         touched.username &&
                                         errors.username &&
-                                        `1px solid ${COLORS.primary3}`
+                                        `1px solid ${COLORS.warning}`
                                     }
                                     style={{ width: "100%" }}
                                 />
@@ -118,7 +118,7 @@ const ProxyPopup = ({ shown, onClose }) => {
                                     border={
                                         touched.password &&
                                         errors.password &&
-                                        `1px solid ${COLORS.primary3}`
+                                        `1px solid ${COLORS.warning}`
                                     }
                                     style={{ width: "100%" }}
                                 />
@@ -136,7 +136,7 @@ const ProxyPopup = ({ shown, onClose }) => {
                                         border={
                                             touched.min_wait_time &&
                                             errors.min_wait_time &&
-                                            `1px solid ${COLORS.primary3}`
+                                            `1px solid ${COLORS.warning}`
                                         }
                                         style={{ width: "100%" }}
                                     />
@@ -153,7 +153,7 @@ const ProxyPopup = ({ shown, onClose }) => {
                                         border={
                                             touched.random_delay &&
                                             errors.random_delay &&
-                                            `1px solid ${COLORS.primary3}`
+                                            `1px solid ${COLORS.warning}`
                                         }
                                         style={{ width: "100%" }}
                                     />

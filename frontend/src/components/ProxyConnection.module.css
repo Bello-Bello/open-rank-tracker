@@ -1,0 +1,21 @@
+.container {
+    color: var(--colors-fg1);
+    border-radius: var(--border-radius);
+    background-color: var(--colors-bg4);
+    padding: var(--pad-sm);
+    width: 400px;
+    font-size: 14px;
+}
+
+.row {
+    display: flex;
+}
+
+.valueGroup { 
+    flex: 1; 
+}
+
+.valueGroup > div:nth-of-type(1) {
+    margin-bottom: var(--margin-xs);
+    opacity: 0.7;
+}

@@ -51,8 +51,6 @@ def scan_keyword(proxyconn, keyword):
         proxyconn.engaged = True
 
     proxyconn.last_used = datetime.utcnow()
-    proxyconn.usage_count += 1
-
     keyword.scanning = True
 
     db.session.add_all((proxyconn, keyword))
@@ -87,6 +85,8 @@ def handle_scraper_response(keyword_id, data):
             ranking.url = url
             ranking.position = position
             ranking.keyword = keyword
+
+            proxyconn.success_count += 1
 
             db.session.add(ranking)
     keyword.scanning = False

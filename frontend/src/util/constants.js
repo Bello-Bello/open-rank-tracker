@@ -12,8 +12,10 @@ export const BORDER_RADIUS_SM = "6px";
 export const COLORS = {
     primary1: "#517CEC",
     primary2: "#8B5AE7",
-    primary3: "#9A274C",
-    primary4: "#27C064",
+    primary3: "#27C064",
+	success: "#00CF62",
+	caution: "#FB964E",
+    warning: "#9A274C",
     transparentPrimary1: "rgba(81, 124, 236, 0.6)",
     fg1: "#FFFFFF",
     fg2: "#9496A1",
