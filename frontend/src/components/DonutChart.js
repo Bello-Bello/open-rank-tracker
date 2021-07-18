@@ -45,43 +45,43 @@ class ProxyDonut extends Component {
             );
     }
 
-    drawChart() {
-        const svg = d3.select(this.svgRef.current).select("g");
+drawChart() {
+    const svg = d3.select(this.svgRef.current).select("g");
 
-        const radius = Math.min(this.width, this.height) / 2;
-        const donutWidth = 10;
+    const radius = Math.min(this.width, this.height) / 2;
+    const donutWidth = 10;
 
-        const arc = d3
-            .arc()
-            .padAngle(0.05)
-            .innerRadius(radius - donutWidth)
-            .outerRadius(radius)
-            .cornerRadius(15);
+    const arc = d3
+        .arc()
+        .padAngle(0.05)
+        .innerRadius(radius - donutWidth)
+        .outerRadius(radius)
+        .cornerRadius(15);
 
-        const data = [
-            this.props.category.POSITIVE,
-            this.props.category.NEGATIVE,
-            this.props.category.NEUTRAL
-        ];
+    const data = [
+        this.props.category.POSITIVE,
+        this.props.category.NEGATIVE,
+        this.props.category.NEUTRAL
+    ];
 
-        const pie = d3
-            .pie()
-            .value(d => d)
-            .sort(null);
+    const pie = d3
+        .pie()
+        .value(d => d)
+        .sort(null);
 
-        const path = svg.selectAll("path").data(pie(data));
+    const path = svg.selectAll("path").data(pie(data));
 
-        path.enter()
-            .append("path")
-            .merge(path)
-            .attr("d", arc)
-            .attr("fill", (d, i) => {
-                return [COLORS.success, COLORS.warning, COLORS.caution][i];
-            })
-            .attr("transform", "translate(0, 0)");
+    path.enter()
+        .append("path")
+        .merge(path)
+        .attr("d", arc)
+        .attr("fill", (d, i) => {
+            return [COLORS.success, COLORS.warning, COLORS.caution][i];
+        })
+        .attr("transform", "translate(0, 0)");
 
-        path.exit().remove();
-    }
+    path.exit().remove();
+}
 
     render() {
         return <svg ref={this.svgRef}></svg>;
